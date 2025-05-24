@@ -1,31 +1,30 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Usuario {
-    private String nombre;
-    private ArrayList<Supermercado> supermercados;
+    private final ArrayList<Supermercado> supermercados;
 
-    public Usuario(String nombre) {
-        this.nombre = nombre;
+
+    public Usuario(String nombreUsuario) {
         supermercados = new ArrayList<>();
     }
+
 
     public void agregarSupermercado(Supermercado s) {
         supermercados.add(s);
     }
 
-    public void verSupermercados() {
-        System.out.println("Supermercados registrados:");
-        for (Supermercado s : supermercados) {
-            System.out.println("- " + s.getNombre());
-        }
+    public boolean eliminarSupermercado(String nombre) {
+        return supermercados.removeIf(s -> s.getNombre().equalsIgnoreCase(nombre));
     }
 
     public Supermercado buscarSupermercado(String nombre) {
         for (Supermercado s : supermercados) {
-            if (s.getNombre().equalsIgnoreCase(nombre)) {
-                return s;
-            }
+            if (s.getNombre().equalsIgnoreCase(nombre)) return s;
         }
         return null;
+    }
+
+    public ArrayList<Supermercado> getSupermercados() {
+        return supermercados;
     }
 }
